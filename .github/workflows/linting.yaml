@@ -1,5 +1,4 @@
----
-name: Lint
+name: Lint & Security Scan
 
 on: # yamllint disable-line rule:truthy
   push: null
@@ -9,7 +8,7 @@ permissions: {}
 
 jobs:
   build:
-    name: Lint
+    name: Lint & Security Scan
     runs-on: ubuntu-latest
 
     permissions:
@@ -32,10 +31,10 @@ jobs:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Bandit Scan
+      - name: Bandit Security Scan
         uses: shundor/bandit-action@v1
-        with: 
-            path: "."
-            level: high
-            confidence: high
-            exit_zero: true
+        with:
+          path: "."
+          level: high
+          confidence: high
+          exit_zero: true
